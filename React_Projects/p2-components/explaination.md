@@ -1,0 +1,1 @@
+component is type of function we can say that retuirn html type code 
