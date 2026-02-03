@@ -2,7 +2,7 @@ nodejs provide the the run time environment to run the js ie to to run js on ser
 
 express js is a framework to write the efficient backend 
 
-npm init
+npm init -y
 npm install express
 npm install nodemon to auto refresh  then under pakkage.json under script add  "dev" : "nodemon xyz.js"
 
@@ -33,3 +33,5 @@ to run-> npm run dev
 
 
 ![alt text](image.png)
+
+![alt text](image-1.png)
