@@ -4,9 +4,11 @@ const { connect } = require('mongoose')
 const productRoutes = require('./routes/productRoutes')
 const app = express()
 const port = 3000
+ 
 
-
+app.use(express.json());
 connectDB();
+
 
 app.get('/', (req, res) => {
   res.send('Hello World!')

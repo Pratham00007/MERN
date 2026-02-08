@@ -19,7 +19,7 @@ const ProductSchema=new Schema({
         maxlength:50
 
     },
-    decription:{
+    description:{
         type: String,
         required:true,
         maxlength:50

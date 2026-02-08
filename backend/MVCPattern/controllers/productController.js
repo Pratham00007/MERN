@@ -32,19 +32,24 @@ const createProduct=async (req,res)=>{
         const newProduct=new Product({
             name,price,description,category
         });
+
         await newProduct.save();
         res.status(200).json({
-            product:newproduct
+            success:true,
+            product:newProduct
         })
-    }catch(err){
-        res.status(500).json({
-            success:false,
-            message:"Internal Server Error"
-        })
-    }
+    }catch (err) {
+  console.error(err);
+
+  return res.status(500).json({
+    success: false,
+    message: err.message,
+  });
 }
 
-const updatProduct=async(req,res)=>{
+}
+
+const updatedProduct=async(req,res)=>{
     try{
         // to get the id
         const {id} = req.params;
@@ -60,9 +65,34 @@ const updatProduct=async(req,res)=>{
         })
 
     }catch(err){
-
+        res.status(500).json({
+            success:false,
+            message:"Internal Server Error"
+        })
     }
 }
 
+const deleteProduct=async (req,res)=>{
+    try{
+        const {id} = req.params;
+        const deletedProduct=await Product.findByIdAndDelete(id);
 
-module.exports={getProducts}
+        if(!deletedProduct){
+            res.json({
+                message:"Product not found, cannot delete"
+            })
+            res.status(200).json({
+                message:"Prodcuct deleted succesffully",
+                product:deletedProduct
+            })
+
+        }
+    }catch(err){
+        res.status(500).json({
+            success:false,
+            message:"Internal Server Error"
+        })
+    }
+}
+
+module.exports={getProducts,updatedProduct,createProduct,deleteProduct}
